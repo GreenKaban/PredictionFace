@@ -23,15 +23,19 @@ def get_img_and_base64(url):
     return (img, img64)
 
 
-def merge_style_and_person(mask, person):
-    if DeepFace.verify(np.array(mask), np.array(person), model_name='ArcFace')['verified']:
-        back_np = PIL.Image.open('same.jpg')
+def match_photo(mask, person):
+    try:
+        if DeepFace.verify(np.array(mask), np.array(person), model_name='ArcFace')['verified']:
+            back_np = 'Same'
 
-    else:
-        back_np = PIL.Image.open('notsame.jpg')
-    fmem = io.BytesIO()
-    imsave(fmem, back_np, 'png')
-    fmem.seek(0)
-    merged64 = base64.b64encode(fmem.read()).decode('utf-8')
-    return merged64
+        else:
+            back_np = 'Not same'
+    except ValueError:
+        back_np = 'Face not found'
+
+    # fmem = io.BytesIO()
+    # imsave(fmem, back_np, 'png')
+    # fmem.seek(0)
+    # merged64 = base64.b64encode(fmem.read()).decode('utf-8')
+    return back_np
     # patch_under_person[:,:,0][mask_np > 0] = 0

@@ -117,11 +117,13 @@
             width: 100%;
             } 
             .raw_container {
-                padding: 10px;
-            width: 25%;
+
+            padding: 10px;
+            width: 30%;
             min-height: 30px;
             float: left; /* To allow multiple blocks align together in a row */ 
-            } 
+            }
+
             .alert {
               padding: 20px;
               background-color: #f44336; /* Red */
@@ -141,7 +143,7 @@
 
     <body>
         <div class="banner">
-            <h1>Merge your portret with a nice background!</h1>
+            <h1>Compare the faces in the photos!</h1>
         </div>
 
         <div class="testbox">
@@ -151,7 +153,7 @@
                 {{ form }}
 
                 <div class="btn-block">
-                    <button type="submit" href="/">Merge</button>
+                    <button type="submit" href="/">Match</button>
                 </div>
             </form>
         </div>
@@ -166,9 +168,16 @@
               <img src="data:image/png;base64,{{ style64 }}">
           </div> 
 
-          <div class = "raw_container"> 
-              <img src="data:image/png;base64,{{ result64 }}">
-          </div>
+{#          <div class = "raw_container"> #}
+{#          #}
+{#              <img src="data:image/png;base64,{{ result64 }}">#}
+{#          </div>#}
+
+            <div class = "raw_container">
+            <div class = "name">
+              <p style="color: white; font-size: 25px;text-align: center;"> {{ result64 }}   </p>
+            </div>
+             </div>
 
 
           <div class = "raw_container"> 
@@ -198,23 +207,6 @@
         <!-- <hr align="center" width=100% size="10" color="#fff" /> -->
         
 
-
-
-
-          <div class = "raw_container"> 
-              <img src="{% static 'url_image/images/background.png' %}">
-          </div> 
- 
-          <div class = "raw_container"> 
-              <img src="{% static 'url_image/images/result.png' %}">
-          </div>
-
-
-
-
-          <div class = "raw_container"> 
-              <img src="{% static 'url_image/images/portret.png' %}">
-          </div> 
 
           
         {% endif %}
