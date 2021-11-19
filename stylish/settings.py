@@ -21,13 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'm)pw7824f4#hzu#gb))sqrof2i&o19zkcl23vf(ksdo!k)z2s0'
+# SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True#False
+DEBUG = False
 
-# ALLOWED_HOSTS = ['3.89.255.28', "ec2-3-89-255-28.compute-1.amazonaws.com"]
+ALLOWED_HOSTS = ['3.135.35.167', "ec2-3-135-35-167.us-east-2.compute.amazonaws.com"]
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
