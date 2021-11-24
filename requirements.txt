@@ -1,0 +1,6 @@
+deepface==0.0.68
+Django==3.2.8
+imageio==2.10.1
+numpy==1.19.5
+Pillow==8.4.0
+requests==2.26.0
