@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Avatar is what you need!</title>
+        <title>Compare two photos!</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -58,7 +58,6 @@
             font-size:25pt;
             position: relative;
             height: 210px;
-            background-image: url("");    
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -165,7 +164,7 @@
 
 
           <div class = "raw_container"> 
-              <img src="data:image/png;base64,{{ style64 }}">
+              <img src="data:image/png;base64,{{ photo_first64 }}">
           </div> 
 
 {#          <div class = "raw_container"> #}
@@ -181,7 +180,7 @@
 
 
           <div class = "raw_container"> 
-              <img src="data:image/png;base64,{{ portret64 }}">
+              <img src="data:image/png;base64,{{ photo_second64 }}">
           </div> 
 
 
@@ -191,7 +190,7 @@
 
         {% if photo_err %}
           <div class="alert">
-            <p style="color: black; font-size: 25px;">Can't download portret image!</p>
+            <p style="color: black; font-size: 25px;">Can't download image!</p>
           </div>
         {% endif %}
 
