@@ -31,6 +31,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # Application definition
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'face.comparator@gmail.com'
+EMAIL_HOST_PASSWORD = 'miptproject'
+
+
 INSTALLED_APPS = [
     'url_image.apps.UrlImageConfig',
 
