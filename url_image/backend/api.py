@@ -12,7 +12,7 @@ def get_img_and_base64(url: str) -> (Image.Image, str):
     returns image in base64 format (a string)
     that can be passed to html as context and rendered without saving to drive
     """
-    blob = io.BytesIO(requests.get(url).content)
+    blob = io.BytesIO(url.read())
     img = Image.open(blob).convert('RGB')
     img_np = np.array(img).astype(np.uint8)
     fmem = io.BytesIO()
@@ -42,8 +42,6 @@ def match_photo(photo_1: Image.Image, photo_2: Image.Image) -> str:
 
 
 def bytes2img(file):
-    print(file)
-    print(type(file))
     data = file.read()
     encoded = b64encode(data).decode()
     img = Image.open(data).convert('RGB')

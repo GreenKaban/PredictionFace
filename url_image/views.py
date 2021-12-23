@@ -27,13 +27,11 @@ def index(request):
             # except Exception as e:
             #     photo_err = True
 
-            photo_first, photo_first64 = api.bytes2img(request.FILES['photo_first_url'])
-            photo_second = request.FILES['photo_second_url']
-
-            print(api.bytes2img(photo_first))
+            photo_first, photo_first64 = api.get_img_and_base64(request.FILES['photo_first_url'])
+            photo_second, photo_second64 = api.get_img_and_base64(request.FILES['photo_second_url'])
 
             if not photo_err:
-                result64 = api.match_photo(api.bytes2img(photo_first), photo_second)
+                result64 = api.match_photo(photo_first, photo_second)
                 context = {'form': form,
                            "new_imgs": True, "load_static_examples": False,
                            "portret_err": False, "style_err": False, "result64": result64,
