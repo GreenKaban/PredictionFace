@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 from .forms import UrlsForm
-from .models import GeeksModel
 from .backend import api
 
 
@@ -17,22 +16,16 @@ def index(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            # try:
-            #     photo_first, photo_first64 = api.get_img_and_base64(form.cleaned_data['photo_first_url'])
-            # except Exception as e:
-            #     photo_err = True
-            #
-            # try:
-            #     photo_second, photo_second64 = api.get_img_and_base64(form.cleaned_data['photo_second_url'])
-            # except Exception as e:
-            #     photo_err = True
 
-            photo_first, photo_first64 = api.get_img_and_base64(request.FILES['photo_first_url'])
-            photo_second, photo_second64 = api.get_img_and_base64(request.FILES['photo_second_url'])
+            try:
+                photo_first, photo_first64 = api.get_img_and_base64(form.cleaned_data['photo_first_url'])
+                photo_second, photo_second64 = api.get_img_and_base64(form.cleaned_data['photo_second_url'])
+            except:
+                photo_err = True
 
             if not photo_err:
                 result64 = api.match_photo(photo_first, photo_second)
-                context = {'form': form,
+                context = {'form': form, 'photo_first64': photo_first64, "photo_second64": photo_second64,
                            "new_imgs": True, "load_static_examples": False,
                            "portret_err": False, "style_err": False, "result64": result64,
                            "not_valid_form": False}
