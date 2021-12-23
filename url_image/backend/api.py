@@ -30,6 +30,10 @@ def match_photo(photo_1: Image.Image, photo_2: Image.Image) -> str:
         else:
             back_np = 'Not same'
     except ValueError:
-        back_np = 'Face not found'
+        try:
+            _ = DeepFace.detectFace(np.array(photo_2))
+            back_np = 'No face was found in the first photo'
+        except ValueError:
+            back_np = 'No face was found in the second photo'
 
     return back_np
