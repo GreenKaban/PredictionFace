@@ -26,10 +26,16 @@ SECRET_KEY = 'm)pw7824f4#hzu#gb))sqrof2i&o19zkcl23vf(ksdo!k)z2s0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['3.135.35.167', "ec2-3-135-35-167.us-east-2.compute.amazonaws.com"]
 
 ALLOWED_HOSTS = []
 # Application definition
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'face.comparator@gmail.com'
+EMAIL_HOST_PASSWORD = 'miptproject'
+
 
 INSTALLED_APPS = [
     'url_image.apps.UrlImageConfig',
