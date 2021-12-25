@@ -1,12 +1,10 @@
 from django.shortcuts import render
 
-
 from .forms import UrlsForm
 from .backend import api, email_sender
-from django.core.mail import send_mail, EmailMessage
+
 
 def index(request):
-
     photo_err = False
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -28,12 +26,8 @@ def index(request):
             if not photo_err:
                 result64 = api.match_photo(photo_first, photo_second)
 
-                # email_sender.send_email('ig.ko4etkoff2013@gmail.com', '', result64, [form.cleaned_data['photo_first_url'], form.cleaned_data['photo_second_url']])
-
-                mail = EmailMessage('subject', result64, 'face.comparator@gmail.com', [email])
-                mail.attach(image1.name, image1.read(), image1.content_type)
-                mail.attach(image2.name, image2.read(), image2.content_type)
-                mail.send()
+                email_sender.send_email(email, 'Face comparator report', result64,
+                                        [(photo_first, image1.name), (photo_second, image1.name)])
 
                 context = {'form': form, 'photo_first64': photo_first64, "photo_second64": photo_second64,
                            "new_imgs": True, "load_static_examples": False,
