@@ -26,8 +26,9 @@ def index(request):
             if not photo_err:
                 result64 = api.match_photo(photo_first, photo_second)
 
-                email_sender.send_email(email, 'Face comparator report', result64,
-                                        [(photo_first, image1.name), (photo_second, image1.name)])
+                if email != '':
+                    email_sender.send_email(email, 'Face comparator report', result64,
+                                            [(photo_first, image1.name), (photo_second, image1.name)])
 
                 context = {'form': form, 'photo_first64': photo_first64, "photo_second64": photo_second64,
                            "new_imgs": True, "load_static_examples": False,
