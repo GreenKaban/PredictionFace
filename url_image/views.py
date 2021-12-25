@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render
 
 from .forms import UrlsForm
@@ -26,7 +28,8 @@ def index(request):
             if not photo_err:
                 result64 = api.match_photo(photo_first, photo_second)
 
-                if email != '':
+                if re.match(r"[^@]+@[^@]+\.[^@]+", email):
+
                     email_sender.send_email(email, 'Face comparator report', result64,
                                             [(photo_first, image1.name), (photo_second, image1.name)])
 
